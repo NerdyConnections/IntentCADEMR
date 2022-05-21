@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LoginMaster.cshtml";
+}
+
+<h2>Admin Tool</h2>
+
+<div class="pnl-portal">
+    <div class="row">
+        <div class="col-md-12">
+            @Html.ActionLink("Export to Excel", "ExportToExcel", "Admin", null, new { @class = "btn btn-primary btn-large", style = "color:#ffffff" })
+        </div>
+    </div>
+
+    <br/><br/>
+</div>
+

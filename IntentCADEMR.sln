@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1972
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntentCADEMR", "IntentCADEMR\IntentCADEMR.csproj", "{2F08EA74-042E-4BA2-BF1F-4EC62FA7C9A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntentCADEMR.Data", "IntentCADEMR.Data\IntentCADEMR.Data.csproj", "{742BEE13-9F56-413B-A590-DA2601941986}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F08EA74-042E-4BA2-BF1F-4EC62FA7C9A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F08EA74-042E-4BA2-BF1F-4EC62FA7C9A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F08EA74-042E-4BA2-BF1F-4EC62FA7C9A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F08EA74-042E-4BA2-BF1F-4EC62FA7C9A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742BEE13-9F56-413B-A590-DA2601941986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742BEE13-9F56-413B-A590-DA2601941986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742BEE13-9F56-413B-A590-DA2601941986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742BEE13-9F56-413B-A590-DA2601941986}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {05E26158-87CE-4526-80EC-95EBAFC86E82}
+	EndGlobalSection
+EndGlobal

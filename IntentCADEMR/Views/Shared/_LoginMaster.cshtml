@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="https://fonts.googleapis.com/css?family=BenchNine&amp;display=swap" rel="stylesheet">
+    <title>INTENT-CAD EMR Insights into aNticoagulation sTratEgies in CaNadian paTients with CAD</title>
+    <!--jQuery-->
+    <script src="/js/jquery/dist/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/js/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="/js/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/site.css">
+    <!--Load header and footer-->
+  
+    <style type="text/css">
+        .navText {
+            font-family: 'BenchNine', sans-serif;
+            font-size: 18px;
+            font-style: normal;
+            color: #FFF;
+        }
+
+        body, td, th {
+            color: #555;
+            font-family: BenchNine, sans-serif;
+        }
+
+        a:active {
+            color: #005b7f;
+            font-size: 18px;
+        }
+
+        .center-block {
+            width: 600px;
+        }
+
+        a:link {
+            color: #005b7f;
+        }
+
+        a:hover {
+            color: #057cab;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-1 hidden-xs">
+            <div id="logo">
+                <div class="logo-img">
+                    <object id="logo-svg" type="image/svg+xml" data="/img/logo.svg">
+                        <embed src="/img/logo.svg"/>
+                    </object>
+                </div>
+            </div>
+        </div>
+
+        <!--LOGO XS mobile-->
+        <div class="col-sm-12 visible-xs">
+            <div id="logoSM">
+                <div class="logo-imgSM">
+                    <object id="logo-svgSM" type="image/svg+xml" data="/img/logo.svg"></object>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12" style="background: #005b7f; padding-bottom:5px; color:#FFF; margin-top:20px; height:30px"></div>
+    </div>
+    <div id="container">
+        @RenderBody()
+    </div>  <!--end of container-->
+    <div id="navbar-footer" style="border:none">
+        <style type="text/css">
+            body {
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        </style>
+        <footer class="footer">
+            <div class="white" id="footer" style="border:none">
+                <div class="table-responsive">
+                    <table class="table table-striped" style="border:none" border="0">
+
+                        <tbody>
+                            <tr>
+                                <td width="20%" bgcolor="#898989" align="center"><h5><span style="font-weight:700"><img src="/img/CHRClogo.png" width="100" height="65"></span></h5></td>
+                                <td width="20%" valign="top" bgcolor="#898989" align="left">
+                                    <h5>
+                                        <span style="font-size:12px">
+                                            <span style="color: #FFF">
+                                                <br>
+                                                110 Sheppard Avenue East, Suite 309,
+                                                <br>
+                                                North York, Ontario,
+                                                <br>
+                                                M2N 6Y8
+                                            </span>
+                                        </span>
+                                    </h5>
+                                </td>
+                                <td width="20%" valign="top" bgcolor="#898989" align="left">
+                                    <h5>
+                                        <span style="font-size:12px">
+                                            <span style="color: #FFF">
+                                                <br>
+                                            </span>
+                                        </span>
+                                    </h5>
+                                </td>
+                                <td valign="top" bgcolor="#898989" align="left">
+                                    <h5>
+                                        <span style="font-size:12px">
+                                            <span style="color: #FFF">
+                                                <br>
+                                                Supported in part through an Investigator Initiated Grant from Bayer Canada
+                                            </span>
+                                        </span> <span style="color: #FFF">
+                                            <br>
+                                        </span>
+                                    </h5>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

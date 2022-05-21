@@ -1,0 +1,843 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IntentCADEMRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IntentCADEMR.dbo.EmailCorrespondence' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmailCorrespondence">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="250" />
+          <Property Name="OptIn" Type="bit" />
+        </EntityType>
+        <EntityType Name="PayeeInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="PaymentMethod" Type="varchar" MaxLength="100" />
+          <Property Name="ChequePayableTo" Type="varchar" MaxLength="250" />
+          <Property Name="InternalRefNum" Type="varchar" MaxLength="250" />
+          <Property Name="MailingAddr1" Type="varchar" MaxLength="250" />
+          <Property Name="MailingAddr2" Type="varchar" MaxLength="250" />
+          <Property Name="AttentionTo" Type="varchar" MaxLength="250" />
+          <Property Name="City" Type="varchar" MaxLength="250" />
+          <Property Name="Province" Type="varchar" MaxLength="250" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="250" />
+          <Property Name="ApplicableTax" Type="varchar" MaxLength="250" />
+          <Property Name="TaxNumber" Type="varchar" MaxLength="250" />
+          <Property Name="AdditionalInformation" Type="varchar(max)" />
+          <Property Name="LastUpdated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RegistrationInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="ClinicName" Type="varchar" MaxLength="50" />
+          <Property Name="MailingAddress" Type="varchar" MaxLength="100" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Province" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="FaxNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Gender" Type="varchar" MaxLength="50" />
+          <Property Name="MedicalSpecialty" Type="varchar" MaxLength="50" />
+          <Property Name="MedicalSpecialtyOther" Type="varchar" MaxLength="150" />
+          <Property Name="Practice" Type="varchar" MaxLength="50" />
+          <Property Name="PracticeOther" Type="varchar" MaxLength="150" />
+          <Property Name="PracticeYears" Type="varchar" MaxLength="50" />
+          <Property Name="PatientNumbers" Type="int" />
+          <Property Name="ProportionPAD" Type="varchar" MaxLength="50" />
+          <Property Name="ProportionCD" Type="varchar" MaxLength="50" />
+          <Property Name="ProportionDM" Type="varchar" MaxLength="50" />
+          <Property Name="ProportionRD" Type="varchar" MaxLength="50" />
+          <Property Name="ProportionHF" Type="varchar(max)" />
+          <Property Name="ProportionCurrentSmoker" Type="varchar" MaxLength="50" />
+          <Property Name="FamiliarCOMPASSTrial" Type="varchar(max)" />
+          <Property Name="SomeCAD_PAD" Type="bit" />
+          <Property Name="SomeCAD_2RiskFactors" Type="bit" />
+          <Property Name="MostCAD_PAD" Type="bit" />
+          <Property Name="MostCAD_2RiskFactors" Type="bit" />
+          <Property Name="NoImpact" Type="bit" />
+          <Property Name="ASA" Type="varchar" MaxLength="50" />
+          <Property Name="Statin" Type="varchar" MaxLength="50" />
+          <Property Name="ACEI" Type="varchar" MaxLength="50" />
+          <Property Name="OAA" Type="varchar" MaxLength="50" />
+          <Property Name="Rivaroxaban" Type="varchar" MaxLength="50" />
+          <Property Name="LackEvidenceBasedGuidelines" Type="bit" />
+          <Property Name="LackApplicabilityGuidelines" Type="bit" />
+          <Property Name="LackTime" Type="bit" />
+          <Property Name="OrganizationalInstitutional" Type="bit" />
+          <Property Name="ReimbursementFinancial" Type="bit" />
+          <Property Name="PatientAdherence" Type="bit" />
+          <Property Name="TreatmentAdverseEvents" Type="bit" />
+          <Property Name="NoneAbove" Type="bit" />
+          <Property Name="EducationalPracticalSolutions" Type="varchar(max)" />
+          <Property Name="SubmittedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar(max)" />
+          <Property Name="Password" Type="varchar(max)" />
+          <Property Name="Activated" Type="bit" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="ActivationDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="UserIDRequestedBy" Type="int" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="AssignedRole" Type="int" />
+          <Property Name="TerritoryID" Type="int" />
+          <Property Name="RepID" Type="int" />
+          <Property Name="FirstName" Type="varchar" MaxLength="250" />
+          <Property Name="LastName" Type="varchar" MaxLength="250" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="250" />
+          <Property Name="ClinicName" Type="varchar" MaxLength="250" />
+          <Property Name="Address" Type="varchar" MaxLength="250" />
+          <Property Name="Address2" Type="varchar" MaxLength="250" />
+          <Property Name="City" Type="varchar" MaxLength="250" />
+          <Property Name="Province" Type="varchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="250" />
+          <Property Name="Phone" Type="varchar" MaxLength="250" />
+          <Property Name="Fax" Type="varchar" MaxLength="250" />
+          <Property Name="Specialty" Type="varchar" MaxLength="250" />
+          <Property Name="SpeakerHonariumRange" Type="varchar" MaxLength="250" />
+          <Property Name="ModeratorHonariumRange" Type="varchar" MaxLength="250" />
+          <Property Name="TherapeuticID" Type="int" />
+          <Property Name="PrivilegeID" Type="int" />
+          <Property Name="SponsorID" Type="int" />
+          <Property Name="BoneWBSCode" Type="varchar" MaxLength="250" />
+          <Property Name="CVWBSCode" Type="varchar" MaxLength="250" />
+          <Property Name="SubmittedDate" Type="datetime" />
+          <Property Name="Status" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="250" />
+          <Property Name="LastUpdated" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IntentCADEMR.dbo.UserProvince' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserProvince">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Province" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="UserRegistration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="MOU" Type="bit" />
+          <Property Name="PayeeForm" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserStatus">
+          <Key>
+            <PropertyRef Name="UserStatusID" />
+          </Key>
+          <Property Name="UserStatusID" Type="int" Nullable="false" />
+          <Property Name="UserStatusDescription" Type="varchar" MaxLength="50" />
+          <Property Name="Comment" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="UserTypeLookUp">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Comments" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_RegistrationInfo_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="RegistrationInfo" Type="Self.RegistrationInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RegistrationInfo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User1" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_UserTypeLookUp">
+          <End Role="UserTypeLookUp" Type="Self.UserTypeLookUp" Multiplicity="1" />
+          <End Role="UserInfo" Type="Self.UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeLookUp">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRegistration_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRole">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTypeLookUp_UserTypeLookUp">
+          <End Role="UserTypeLookUp" Type="Self.UserTypeLookUp" Multiplicity="1" />
+          <End Role="UserTypeLookUp1" Type="Self.UserTypeLookUp" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeLookUp">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserTypeLookUp1">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IntentCADEMRModelStoreContainer">
+          <EntitySet Name="PayeeInfo" EntityType="Self.PayeeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationInfo" EntityType="Self.RegistrationInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserInfo" EntityType="Self.UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRegistration" EntityType="Self.UserRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserStatus" EntityType="Self.UserStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTypeLookUp" EntityType="Self.UserTypeLookUp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailCorrespondence" EntityType="Self.EmailCorrespondence" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmailCorrespondence].[id] AS [id], 
+    [EmailCorrespondence].[EmailAddress] AS [EmailAddress], 
+    [EmailCorrespondence].[OptIn] AS [OptIn]
+    FROM [dbo].[EmailCorrespondence] AS [EmailCorrespondence]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserProvince" EntityType="Self.UserProvince" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserProvince].[id] AS [id], 
+    [UserProvince].[UserID] AS [UserID], 
+    [UserProvince].[Province] AS [Province]
+    FROM [dbo].[UserProvince] AS [UserProvince]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_RegistrationInfo_User" Association="Self.FK_RegistrationInfo_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="RegistrationInfo" EntitySet="RegistrationInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="Self.FK_User_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User1" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_User" Association="Self.FK_UserInfo_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_UserTypeLookUp" Association="Self.FK_UserInfo_UserTypeLookUp">
+            <End Role="UserTypeLookUp" EntitySet="UserTypeLookUp" />
+            <End Role="UserInfo" EntitySet="UserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRegistration_User" Association="Self.FK_UserRegistration_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_Role" Association="Self.FK_UserRole_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRole_User" Association="Self.FK_UserRole_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTypeLookUp_UserTypeLookUp" Association="Self.FK_UserTypeLookUp_UserTypeLookUp">
+            <End Role="UserTypeLookUp" EntitySet="UserTypeLookUp" />
+            <End Role="UserTypeLookUp1" EntitySet="UserTypeLookUp" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IntentCADEMRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.UserRole" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Activated" Type="Boolean" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="ActivationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Roles" Relationship="Self.UserRole" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="User1" Relationship="IntentCADEMRModel.FK_User_User" FromRole="User" ToRole="User1" />
+          <NavigationProperty Name="User2" Relationship="IntentCADEMRModel.FK_User_User" FromRole="User1" ToRole="User" />
+          <NavigationProperty Name="RegistrationInfoes" Relationship="IntentCADEMRModel.FK_RegistrationInfo_User" FromRole="User" ToRole="RegistrationInfo" />
+          <NavigationProperty Name="UserInfoes" Relationship="IntentCADEMRModel.FK_UserInfo_User" FromRole="User" ToRole="UserInfo" />
+          <NavigationProperty Name="UserRegistrations" Relationship="IntentCADEMRModel.FK_UserRegistration_User" FromRole="User" ToRole="UserRegistration" />
+        </EntityType>
+        <EntityType Name="UserStatu">
+          <Key>
+            <PropertyRef Name="UserStatusID" />
+          </Key>
+          <Property Name="UserStatusID" Type="Int32" Nullable="false" />
+          <Property Name="UserStatusDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmailCorrespondence">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OptIn" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UserProvince">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Province" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserTypeLookUp">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTypeLookUp1" Relationship="IntentCADEMRModel.FK_UserTypeLookUp_UserTypeLookUp" FromRole="UserTypeLookUp" ToRole="UserTypeLookUp1" />
+          <NavigationProperty Name="UserTypeLookUp2" Relationship="IntentCADEMRModel.FK_UserTypeLookUp_UserTypeLookUp" FromRole="UserTypeLookUp1" ToRole="UserTypeLookUp" />
+          <NavigationProperty Name="UserInfoes" Relationship="IntentCADEMRModel.FK_UserInfo_UserTypeLookUp" FromRole="UserTypeLookUp" ToRole="UserInfo" />
+        </EntityType>
+        <Association Name="UserRole">
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="IntentCADEMREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserStatus" EntityType="Self.UserStatu" />
+          <EntitySet Name="EmailCorrespondences" EntityType="Self.EmailCorrespondence" />
+          <EntitySet Name="UserProvinces" EntityType="Self.UserProvince" />
+          <EntitySet Name="UserTypeLookUps" EntityType="Self.UserTypeLookUp" />
+          <AssociationSet Name="UserRole" Association="Self.UserRole">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTypeLookUp_UserTypeLookUp" Association="IntentCADEMRModel.FK_UserTypeLookUp_UserTypeLookUp">
+            <End Role="UserTypeLookUp" EntitySet="UserTypeLookUps" />
+            <End Role="UserTypeLookUp1" EntitySet="UserTypeLookUps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User" Association="IntentCADEMRModel.FK_User_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="User1" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="PayeeInfoes" EntityType="IntentCADEMRModel.PayeeInfo" />
+          <EntitySet Name="RegistrationInfoes" EntityType="IntentCADEMRModel.RegistrationInfo" />
+          <AssociationSet Name="FK_RegistrationInfo_User" Association="IntentCADEMRModel.FK_RegistrationInfo_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RegistrationInfo" EntitySet="RegistrationInfoes" />
+          </AssociationSet>
+          <EntitySet Name="UserInfoes" EntityType="IntentCADEMRModel.UserInfo" />
+          <AssociationSet Name="FK_UserInfo_User" Association="IntentCADEMRModel.FK_UserInfo_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserInfo_UserTypeLookUp" Association="IntentCADEMRModel.FK_UserInfo_UserTypeLookUp">
+            <End Role="UserTypeLookUp" EntitySet="UserTypeLookUps" />
+            <End Role="UserInfo" EntitySet="UserInfoes" />
+          </AssociationSet>
+          <EntitySet Name="UserRegistrations" EntityType="IntentCADEMRModel.UserRegistration" />
+          <AssociationSet Name="FK_UserRegistration_User" Association="IntentCADEMRModel.FK_UserRegistration_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_UserTypeLookUp_UserTypeLookUp">
+          <End Type="IntentCADEMRModel.UserTypeLookUp" Role="UserTypeLookUp" Multiplicity="1" />
+          <End Type="IntentCADEMRModel.UserTypeLookUp" Role="UserTypeLookUp1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeLookUp">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserTypeLookUp1">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User">
+          <End Type="IntentCADEMRModel.User" Role="User" Multiplicity="1" />
+          <End Type="IntentCADEMRModel.User" Role="User1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PayeeInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ChequePayableTo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="InternalRefNum" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MailingAddr1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MailingAddr2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AttentionTo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Province" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ApplicableTax" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TaxNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="AdditionalInformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="RegistrationInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClinicName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MailingAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MedicalSpecialty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MedicalSpecialtyOther" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Practice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PracticeOther" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PracticeYears" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PatientNumbers" Type="Int32" />
+          <Property Name="ProportionPAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProportionCD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProportionDM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProportionRD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProportionHF" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProportionCurrentSmoker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FamiliarCOMPASSTrial" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SomeCAD_PAD" Type="Boolean" />
+          <Property Name="SomeCAD_2RiskFactors" Type="Boolean" />
+          <Property Name="MostCAD_PAD" Type="Boolean" />
+          <Property Name="MostCAD_2RiskFactors" Type="Boolean" />
+          <Property Name="NoImpact" Type="Boolean" />
+          <Property Name="ASA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Statin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACEI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OAA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rivaroxaban" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LackEvidenceBasedGuidelines" Type="Boolean" />
+          <Property Name="LackApplicabilityGuidelines" Type="Boolean" />
+          <Property Name="LackTime" Type="Boolean" />
+          <Property Name="OrganizationalInstitutional" Type="Boolean" />
+          <Property Name="ReimbursementFinancial" Type="Boolean" />
+          <Property Name="PatientAdherence" Type="Boolean" />
+          <Property Name="TreatmentAdverseEvents" Type="Boolean" />
+          <Property Name="NoneAbove" Type="Boolean" />
+          <Property Name="EducationalPracticalSolutions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="IntentCADEMRModel.FK_RegistrationInfo_User" FromRole="RegistrationInfo" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_RegistrationInfo_User">
+          <End Type="IntentCADEMRModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="IntentCADEMRModel.RegistrationInfo" Role="RegistrationInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="RegistrationInfo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="UserIDRequestedBy" Type="Int32" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="AssignedRole" Type="Int32" />
+          <Property Name="TerritoryID" Type="Int32" />
+          <Property Name="RepID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ClinicName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Specialty" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SpeakerHonariumRange" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ModeratorHonariumRange" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TherapeuticID" Type="Int32" />
+          <Property Name="PrivilegeID" Type="Int32" />
+          <Property Name="SponsorID" Type="Int32" />
+          <Property Name="BoneWBSCode" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="CVWBSCode" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SubmittedDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="User" Relationship="IntentCADEMRModel.FK_UserInfo_User" FromRole="UserInfo" ToRole="User" />
+          <NavigationProperty Name="UserTypeLookUp" Relationship="IntentCADEMRModel.FK_UserInfo_UserTypeLookUp" FromRole="UserInfo" ToRole="UserTypeLookUp" />
+        </EntityType>
+        <Association Name="FK_UserInfo_User">
+          <End Type="IntentCADEMRModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="IntentCADEMRModel.UserInfo" Role="UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserInfo_UserTypeLookUp">
+          <End Type="IntentCADEMRModel.UserTypeLookUp" Role="UserTypeLookUp" Multiplicity="1" />
+          <End Type="IntentCADEMRModel.UserInfo" Role="UserInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeLookUp">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserInfo">
+              <PropertyRef Name="UserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserRegistration">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="MOU" Type="Boolean" />
+          <Property Name="PayeeForm" Type="Boolean" />
+          <NavigationProperty Name="User" Relationship="IntentCADEMRModel.FK_UserRegistration_User" FromRole="UserRegistration" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_UserRegistration_User">
+          <End Type="IntentCADEMRModel.User" Role="User" Multiplicity="1" />
+          <End Type="IntentCADEMRModel.UserRegistration" Role="UserRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IntentCADEMRModelStoreContainer" CdmEntityContainer="IntentCADEMREntities">
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Activated" ColumnName="Activated" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserStatus">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.UserStatu">
+              <MappingFragment StoreEntitySet="UserStatus">
+                <ScalarProperty Name="UserStatusID" ColumnName="UserStatusID" />
+                <ScalarProperty Name="UserStatusDescription" ColumnName="UserStatusDescription" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailCorrespondences">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.EmailCorrespondence">
+              <MappingFragment StoreEntitySet="EmailCorrespondence">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="OptIn" ColumnName="OptIn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProvinces">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.UserProvince">
+              <MappingFragment StoreEntitySet="UserProvince">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypeLookUps">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.UserTypeLookUp">
+              <MappingFragment StoreEntitySet="UserTypeLookUp">
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserRole" TypeName="IntentCADEMRModel.UserRole" StoreEntitySet="UserRole">
+            <EndProperty Name="Role">
+              <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+            </EndProperty>
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserID" ColumnName="UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="PayeeInfoes">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.PayeeInfo">
+              <MappingFragment StoreEntitySet="PayeeInfo">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="AdditionalInformation" ColumnName="AdditionalInformation" />
+                <ScalarProperty Name="TaxNumber" ColumnName="TaxNumber" />
+                <ScalarProperty Name="ApplicableTax" ColumnName="ApplicableTax" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AttentionTo" ColumnName="AttentionTo" />
+                <ScalarProperty Name="MailingAddr2" ColumnName="MailingAddr2" />
+                <ScalarProperty Name="MailingAddr1" ColumnName="MailingAddr1" />
+                <ScalarProperty Name="InternalRefNum" ColumnName="InternalRefNum" />
+                <ScalarProperty Name="ChequePayableTo" ColumnName="ChequePayableTo" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationInfoes">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.RegistrationInfo">
+              <MappingFragment StoreEntitySet="RegistrationInfo">
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="EducationalPracticalSolutions" ColumnName="EducationalPracticalSolutions" />
+                <ScalarProperty Name="NoneAbove" ColumnName="NoneAbove" />
+                <ScalarProperty Name="TreatmentAdverseEvents" ColumnName="TreatmentAdverseEvents" />
+                <ScalarProperty Name="PatientAdherence" ColumnName="PatientAdherence" />
+                <ScalarProperty Name="ReimbursementFinancial" ColumnName="ReimbursementFinancial" />
+                <ScalarProperty Name="OrganizationalInstitutional" ColumnName="OrganizationalInstitutional" />
+                <ScalarProperty Name="LackTime" ColumnName="LackTime" />
+                <ScalarProperty Name="LackApplicabilityGuidelines" ColumnName="LackApplicabilityGuidelines" />
+                <ScalarProperty Name="LackEvidenceBasedGuidelines" ColumnName="LackEvidenceBasedGuidelines" />
+                <ScalarProperty Name="Rivaroxaban" ColumnName="Rivaroxaban" />
+                <ScalarProperty Name="OAA" ColumnName="OAA" />
+                <ScalarProperty Name="ACEI" ColumnName="ACEI" />
+                <ScalarProperty Name="Statin" ColumnName="Statin" />
+                <ScalarProperty Name="ASA" ColumnName="ASA" />
+                <ScalarProperty Name="NoImpact" ColumnName="NoImpact" />
+                <ScalarProperty Name="MostCAD_2RiskFactors" ColumnName="MostCAD_2RiskFactors" />
+                <ScalarProperty Name="MostCAD_PAD" ColumnName="MostCAD_PAD" />
+                <ScalarProperty Name="SomeCAD_2RiskFactors" ColumnName="SomeCAD_2RiskFactors" />
+                <ScalarProperty Name="SomeCAD_PAD" ColumnName="SomeCAD_PAD" />
+                <ScalarProperty Name="FamiliarCOMPASSTrial" ColumnName="FamiliarCOMPASSTrial" />
+                <ScalarProperty Name="ProportionCurrentSmoker" ColumnName="ProportionCurrentSmoker" />
+                <ScalarProperty Name="ProportionHF" ColumnName="ProportionHF" />
+                <ScalarProperty Name="ProportionRD" ColumnName="ProportionRD" />
+                <ScalarProperty Name="ProportionDM" ColumnName="ProportionDM" />
+                <ScalarProperty Name="ProportionCD" ColumnName="ProportionCD" />
+                <ScalarProperty Name="ProportionPAD" ColumnName="ProportionPAD" />
+                <ScalarProperty Name="PatientNumbers" ColumnName="PatientNumbers" />
+                <ScalarProperty Name="PracticeYears" ColumnName="PracticeYears" />
+                <ScalarProperty Name="PracticeOther" ColumnName="PracticeOther" />
+                <ScalarProperty Name="Practice" ColumnName="Practice" />
+                <ScalarProperty Name="MedicalSpecialtyOther" ColumnName="MedicalSpecialtyOther" />
+                <ScalarProperty Name="MedicalSpecialty" ColumnName="MedicalSpecialty" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="MailingAddress" ColumnName="MailingAddress" />
+                <ScalarProperty Name="ClinicName" ColumnName="ClinicName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInfoes">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.UserInfo">
+              <MappingFragment StoreEntitySet="UserInfo">
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SubmittedDate" ColumnName="SubmittedDate" />
+                <ScalarProperty Name="CVWBSCode" ColumnName="CVWBSCode" />
+                <ScalarProperty Name="BoneWBSCode" ColumnName="BoneWBSCode" />
+                <ScalarProperty Name="SponsorID" ColumnName="SponsorID" />
+                <ScalarProperty Name="PrivilegeID" ColumnName="PrivilegeID" />
+                <ScalarProperty Name="TherapeuticID" ColumnName="TherapeuticID" />
+                <ScalarProperty Name="ModeratorHonariumRange" ColumnName="ModeratorHonariumRange" />
+                <ScalarProperty Name="SpeakerHonariumRange" ColumnName="SpeakerHonariumRange" />
+                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ClinicName" ColumnName="ClinicName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RepID" ColumnName="RepID" />
+                <ScalarProperty Name="TerritoryID" ColumnName="TerritoryID" />
+                <ScalarProperty Name="AssignedRole" ColumnName="AssignedRole" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserIDRequestedBy" ColumnName="UserIDRequestedBy" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRegistrations">
+            <EntityTypeMapping TypeName="IntentCADEMRModel.UserRegistration">
+              <MappingFragment StoreEntitySet="UserRegistration">
+                <ScalarProperty Name="PayeeForm" ColumnName="PayeeForm" />
+                <ScalarProperty Name="MOU" ColumnName="MOU" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

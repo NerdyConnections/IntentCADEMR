@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="02ccec9fc7714478b553a680156316e3" Name="Diagram1" ZoomLevel="38">
+        <EntityTypeShape EntityType="IntentCADEMRModel.Role" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.User" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.UserStatu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.EmailCorrespondence" Width="1.5" PointX="2.125" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.UserProvince" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.UserTypeLookUp" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="IntentCADEMRModel.UserRole" ManuallyRouted="false" />
+        <AssociationConnector Association="IntentCADEMRModel.FK_UserTypeLookUp_UserTypeLookUp" />
+        <AssociationConnector Association="IntentCADEMRModel.FK_User_User" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.PayeeInfo" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.RegistrationInfo" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="IntentCADEMRModel.FK_RegistrationInfo_User" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.UserInfo" Width="1.5" PointX="12" PointY="2.5" />
+        <AssociationConnector Association="IntentCADEMRModel.FK_UserInfo_User" />
+        <AssociationConnector Association="IntentCADEMRModel.FK_UserInfo_UserTypeLookUp" />
+        <EntityTypeShape EntityType="IntentCADEMRModel.UserRegistration" Width="1.5" PointX="5.25" PointY="13.75" />
+        <AssociationConnector Association="IntentCADEMRModel.FK_UserRegistration_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

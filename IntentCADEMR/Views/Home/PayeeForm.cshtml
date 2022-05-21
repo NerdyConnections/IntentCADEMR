@@ -1,0 +1,128 @@
+﻿@using IntentCADEMR.Util
+@model IntentCADEMR.Models.PayeeFormModel
+@{
+    ViewBag.Title = "PayeeForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row" style="padding-bottom:10px; padding-top:0px; font-size:24px; background-color:#eeeeee; margin-top:0px">
+   
+@using (Html.BeginForm("PayeeForm", "Home", FormMethod.Post, new { @id = "frmPayeeForm" }))
+{
+    @Html.HiddenFor(model => model.UserID)
+    <!--Right Content  XS S MD LG Screens-->
+    <div class="col-sm-7" style=" padding:30px 20px 30px 20px">
+        <strong>Payee Form </strong>
+
+        <br>
+        <h4>
+            <strong>
+                INSTRUCTIONS
+            </strong>
+        </h4>
+        <ul>
+            <li>
+                <h4>
+                    Completion of the Payee Form is a mandatory requirement
+                </h4>
+            </li>
+            <li>
+                <h4>
+                    Click the "Submit" button once you have completed the Payee Form
+                </h4>
+            </li>
+            <li>
+                <h4>
+                    Once the Payee Form is completed, the status in your dashboard will change to a checkmark (<span class="glyphicon glyphicon-check"></span>)
+                </h4>
+            </li>
+        </ul>
+
+        <h4>
+            <br>
+        </h4>
+        <div style="padding:10px">
+            <label class="control-label">Cheque Payable to:  </label>
+            @Html.TextBoxFor(model => model.ChequePayableTo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ChequePayableTo, "", new { @class = "text-danger" })
+        </div>
+        <div style="padding:10px">
+            <label class="control-label">Internal Reference Number:  </label>
+            @Html.TextBoxFor(model => model.InternalRefNum, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.InternalRefNum, "", new { @class = "text-danger" })
+        </div>
+        <div style="padding:10px">
+            <label class="control-label">Mailing Address 1:  </label>
+            @Html.TextBoxFor(model => model.MailingAddr1, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MailingAddr1, "", new { @class = "text-danger" })
+        </div>
+        <div style="padding:10px">
+            <label class="control-label">Mailing Address 2:  </label>
+            @Html.TextBoxFor(model => model.MailingAddr2, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MailingAddr2, "", new { @class = "text-danger" })
+        </div>
+        <div style="padding:10px">
+            <label class="control-label">Attention To:  </label>
+            @Html.TextBoxFor(model => model.AttentionTo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.AttentionTo, "", new { @class = "text-danger" })
+        </div>
+        <div style="padding:10px">
+            <label class="control-label">City:  </label>
+            @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div style="padding:10px">
+            <label class="control-label">
+                Province:
+            </label>
+            <div>
+                @Html.DropDownListFor(model => model.Province, new SelectList(UserHelper.GetProvinces(), "Value", "Text"), "Please select a province", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Province, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div style="padding:10px">
+            <label class="control-label">Postal Code:  </label>
+            @Html.TextBoxFor(model => model.PostalCode, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+        </div>
+
+        <div style="padding:10px">
+            <label class="control-label">Applicable Tax:</label>
+            @Html.TextBoxFor(model => model.ApplicableTax, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ApplicableTax, "", new { @class = "text-danger" })
+        </div>
+        <div style="padding:10px">
+            <label class="control-label">Tax Number (HST / Other):</label>
+            @Html.TextBoxFor(model => model.TaxNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TaxNumber, "", new { @class = "text-danger" })
+        </div>
+
+        <div style="padding:10px">
+            <label class="control-label">Additional Information / Comments (if Applicable)</label>:
+            @Html.TextAreaFor(model => model.AdditionalInformation, new { @class = "form-control" })
+        </div>
+
+
+
+        <p>&nbsp;</p>
+        <div style="text-align:center;">
+            <button type="button" class="btn btn-primary btn-lg" id="btnSubmit">SUBMIT</button>
+        </div>
+    </div>
+}
+</div>
+<script>
+    $(document).ready(function () {
+        var isSubmitted = '@(ViewBag.IsSubmitted)';
+        if (isSubmitted.toLowerCase() == "true") {
+            $("#btnSubmit").prop('disabled', true);
+        }
+        $("#btnSubmit").click(function () {
+           
+            $("#frmPayeeForm").submit();
+          
+
+        });
+    });
+</script>

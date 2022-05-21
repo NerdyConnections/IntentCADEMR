@@ -1,0 +1,920 @@
+﻿@using IntentCADEMR.Util
+@using  System.Configuration;
+@model IntentCADEMR.Models.RegistrationInfoModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginMaster.cshtml";
+}
+
+<style>
+    .errorMssg {
+        color: red;
+    }
+</style>
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @id = "frmRegistration" }))
+{
+
+    <div class="row" style="padding-bottom:100px; padding-top: 75px; font-size:24px; background-color:#eeeeee">
+
+        <div class="center-block">
+            <div class="row">
+                <div class="col-sm-12">
+                    <img class="img-responsive" src="/img/login_banner_img.png" width="600" height="150">
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; text-align:center; padding:10px 0px 10px 0px">
+                    <h1 class="blue">REGISTRATION FORM</h1>
+                    <h5>
+                        Please complete all the required fields below and create your username (your email address) and password.<br>
+                        * REQUIRED FIELDS
+                    </h5>
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:0px 50px 0px 50px; text-align:center; color:#005b7f">
+                    Contact Information
+                </div>
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:20px 50px 0px 50px">
+                    <label class="control-label">First Name:* </label>
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">Last Name:*</label>
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">Clinic Name:* </label>
+                    @Html.TextBoxFor(model => model.ClinicName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ClinicName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">Mailing Address:* </label>
+                    @Html.TextBoxFor(model => model.MailingAddress, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.MailingAddress, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">City:* </label>
+                    @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">
+                        Province: please select one from the drop down menu
+                    </label>
+                    <div class="col-sm-12">
+                        @Html.DropDownListFor(model => model.Province, new SelectList(UserHelper.GetProvinces(), "Value", "Text"), "Please select a province", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Province, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">Postal Code:* </label>
+                    @Html.TextBoxFor(model => model.PostalCode, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">Phone Number:* </label>
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+
+
+                </div>
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">Fax Number:* </label>
+                    @Html.TextBoxFor(model => model.FaxNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.FaxNumber, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px; text-align:center; color:#005b7f">
+                    Demographics and Practice Information:
+                </div>
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:20px 50px 0px 50px">
+                    <label class="control-label"><strong>Gender:* </strong></label>
+                    <div>
+                        <label>
+                            @Html.RadioButtonFor(model => model.Gender, "Male")
+                            &nbsp;&nbsp;Male
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            @Html.RadioButtonFor(model => model.Gender, "Female")
+                            &nbsp;&nbsp;Female
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            @Html.RadioButtonFor(model => model.Gender, "Prefer not to state")
+                            &nbsp;&nbsp;Prefer not to state
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">
+                        <strong>Medical Specialty*</strong><br>
+                        (Please select one. If other, please specify):
+                    </label>
+
+
+                    <div>
+                        <label>
+                            @Html.RadioButtonFor(model => model.MedicalSpecialty, "Primary Care Physician", new { @class = "MedicalSpecialty" })
+                            &nbsp;&nbsp;Primary Care Physician
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            @Html.RadioButtonFor(model => model.MedicalSpecialty, "Cardiologist", new { @class = "MedicalSpecialty" })
+                            &nbsp;&nbsp;Cardiologist
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            @Html.RadioButtonFor(model => model.MedicalSpecialty, "Internal Medicine Specialist", new { @class = "MedicalSpecialty" })
+                            &nbsp;&nbsp;Internal Medicine Specialist
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            @Html.RadioButtonFor(model => model.MedicalSpecialty, "Endocrinologist", new { @class = "MedicalSpecialty" })
+                            &nbsp;&nbsp;Endocrinologist
+                        </label>
+                    </div>
+
+
+                    <div class="col-sm-12" style="margin-top:0px; padding-top:0px; padding-left:0px">
+                        @Html.RadioButtonFor(model => model.MedicalSpecialty, "Other", new { @id = "MedicalSpecialty", @class = "MedicalSpecialty" })
+                        <label class="" title="Other Medical Specialty">&nbsp;&nbsp;Other, Specify:</label><br />
+                        @Html.ValidationMessageFor(model => model.MedicalSpecialty, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.OtherMedicalSpecialty, new { @class = "form-control", @id = "OtherMedicalSpecialty" })
+                        <label id="OtherMedicalSpecialtyMsg" class="text-danger"></label>
+                    </div>
+                </div>
+
+                <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                    <label class="control-label">
+                        <strong>Which of the following best describes your practice setting?*</strong><br>
+                        (Please select one. If other, please specify):
+                    </label>
+              
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeSetting, "Solo Practice")
+                        &nbsp;&nbsp;Solo Practice
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeSetting, "Group Practice")
+                        &nbsp;&nbsp;Group Practice
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeSetting, "Family Health Team")
+                        &nbsp;&nbsp;Family Health Team
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeSetting, "Community Health Centre")
+                        &nbsp;&nbsp;Community Health Centre
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeSetting, "Family Health Organization")
+                        &nbsp;&nbsp;Family Health Organization
+                    </label>
+                </div>
+
+                <div class="col-sm-12" style="margin-top:0px; padding:0px">
+                    @Html.RadioButtonFor(model => model.PracticeSetting, "Other")
+                    <label class="" title="Last Name">&nbsp;&nbsp;Other, Specify:</label><br />
+                    @Html.ValidationMessageFor(model => model.PracticeSetting, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.OtherPracticeSetting, new { @class = "form-control", @id = "OtherPracticeSetting" })
+                    <!--label id="OtherPracticeSettingMsg" class="text-danger"></!--label-->
+                </div>
+            </div>
+
+            <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+                <label class="control-label"><strong>How many years have you been in practice? *:</strong></label>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeYears, "< 5 years")
+                        &nbsp;&nbsp;&lt; 5 years
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeYears, "5 – 10 years")
+                        &nbsp;&nbsp;5 – 10 years
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeYears, "11-15 years")
+                        &nbsp;&nbsp;11-15 years
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeYears, "16-20 years")
+                        &nbsp;&nbsp;16-20 years
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeYears, "21 – 25 years")
+                        &nbsp;&nbsp;21 – 25 years
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        @Html.RadioButtonFor(model => model.PracticeYears, "> 25 years")
+                        &nbsp;&nbsp;&gt; 25 years
+                    </label><br />
+                    @Html.ValidationMessageFor(model => model.PracticeYears, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px; text-align:center; color:#005b7f">
+            CAD Patient Management Clinical Questions:
+        </div>
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:20px 50px 0px 50px">
+            <label class="control-label">
+                <strong>Approximately how many patients with CAD do you currently manage? * </strong><br>
+                (Please enter a numeric value):
+            </label>
+            @Html.TextBoxFor(model => model.PatientNumbers, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PatientNumbers, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+            <label class="control-label">
+                <strong>What proportion of your CAD patients do you estimate may have the following risk-factors? </strong><br>
+                Select ONE response for each row:
+            </label>
+            <table width="100%" cellspacing="0" cellpadding="0" border="1">
+                <tbody>
+                    <tr>
+                        <td style="padding-left: 10px; color: #FFF;" bgcolor="#005b7f">Risk Factor</td>
+                        <td colspan="5" bgcolor="#005b7f" align="center"><h5 style="color: #FFF">Percent of patients with CAD</h5></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td align="center"><h5>&lt; 25%</h5></td>
+                        <td align="center"><h5>25-50%</h5></td>
+                        <td align="center"><h5>51-75%</h5></td>
+                        <td align="center"><h5>&gt;75%</h5></td>
+                        <td align="center"><h5>Not Sure</h5></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Peripheral Artery Disease</h5>
+                            @Html.ValidationMessageFor(model => model.ProportionPAD, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.ProportionPAD, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionPAD, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionPAD, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionPAD, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionPAD, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Cerebrovascular Disease</h5>
+                            @Html.ValidationMessageFor(model => model.ProportionCD, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.ProportionCD, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionCD, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionCD, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionCD, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionCD, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Diabetes Mellitus</h5>
+                            @Html.ValidationMessageFor(model => model.ProportionDM, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.ProportionDM, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionDM, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionDM, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionDM, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionDM, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Renal Dysfunction</h5>
+                            @Html.ValidationMessageFor(model => model.ProportionRD, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.ProportionRD, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionRD, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionRD, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionRD, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionRD, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Heart Failure</h5>
+                            @Html.ValidationMessageFor(model => model.ProportionHF, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.ProportionHF, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionHF, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionHF, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionHF, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionHF, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Current Smoker</h5>
+                            @Html.ValidationMessageFor(model => model.ProportionCurrentSmoker, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.ProportionCurrentSmoker, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionCurrentSmoker, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionCurrentSmoker, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionCurrentSmoker, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ProportionCurrentSmoker, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+            <label class="control-label"><strong>How familiar are you with the results of the COMPASS Trial? </strong>(Select ONE) </label>
+            <br />
+            <div>
+                <label>
+                    @Html.RadioButtonFor(model => model.FamiliarCOMPASSTrial, "Not at all familiar")
+                    &nbsp;&nbsp;Not at all familiar
+                </label>
+            </div>
+            <div>
+                <label>
+                    @Html.RadioButtonFor(model => model.FamiliarCOMPASSTrial, "Somewhat familiar")
+                    &nbsp;&nbsp;Somewhat familiar
+                </label>
+            </div>
+            <div>
+                <label>
+                    @Html.RadioButtonFor(model => model.FamiliarCOMPASSTrial, "Very familiar")
+                    &nbsp;&nbsp;Very familiar
+                </label>
+            </div>
+            <div>
+                @Html.ValidationMessageFor(model => model.FamiliarCOMPASSTrial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+            <label class="control-label">
+                <strong>What impact have the results of the COMPASS Trial had on your practice? </strong><br>
+                (Check ALL that APPLY or Select “No Impact”)
+            </label>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                <tbody>
+                    <tr>
+                        <td width="6%" valign="middle">@Html.CheckBoxFor(model => model.SomeCAD_PAD)</td>
+                        <td width="94%" valign="top"><h3>I’ve prescribed rivaroxaban 2.5 mg BID in addition to ASA to <strong>some of my patients</strong> with <strong>CAD and PAD</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.SomeCAD_2RiskFactors)</td>
+                        <td valign="top"><h3>I’ve&nbsp;prescribed&nbsp;rivaroxaban 2.5 mg BID in addition to ASA&nbsp;to&nbsp;<strong>some&nbsp;of my patients</strong>&nbsp;with&nbsp;<strong>CAD&nbsp;and two or more risk factors</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.MostCAD_PAD)</td>
+                        <td valign="top"><h3>I’ve&nbsp;prescribed&nbsp;rivaroxaban 2.5 mg BID in addition to ASA&nbsp;to&nbsp;<strong>most&nbsp;of my patients</strong>&nbsp;with&nbsp;<strong>CAD&nbsp;and&nbsp;PAD</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.MostCAD_2RiskFactors)</td>
+                        <td valign="top"><h3>&nbsp;I’ve&nbsp;prescribed&nbsp;rivaroxaban 2.5 mg BID in addition to ASA to&nbsp;<strong>most of my patients</strong>&nbsp;with&nbsp;<strong>CAD&nbsp;and two or more risk factors</strong></h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.NoImpact)</td>
+                        <td valign="top"><h3>&nbsp;No impact</h3></td>
+                    </tr>
+                    <tr><td colspan="2" valign="middle">@Html.ValidationMessageFor(model => model.COMPASSTrialImpactValid, "", new { @class = "text-danger" })</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+            <label class="control-label">
+                <strong>What proportion of your higher-risk (with additional risk factors) CAD patients do you estimate are currently prescribed the following secondary prevention therapies?</strong><br>
+                Select ONE response for each row:
+            </label>
+            <table width="100%" cellspacing="0" cellpadding="0" border="1">
+                <tbody>
+                    <tr>
+                        <td style="padding-left: 10px; color: #FFF;" bgcolor="#005b7f">Risk Factor</td>
+                        <td colspan="5" bgcolor="#005b7f" align="center"><h5 style="color: #FFF">Percent of patients with CAD</h5></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td align="center"><h5>&lt; 25%</h5></td>
+                        <td align="center"><h5>25-50%</h5></td>
+                        <td align="center"><h5>51-75%</h5></td>
+                        <td align="center"><h5>&gt;75%</h5></td>
+                        <td align="center"><h5>Not Sure</h5></td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>ASA</h5> @Html.ValidationMessageFor(model => model.ASA, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.ASA, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ASA, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ASA, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ASA, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ASA, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Statin</h5>@Html.ValidationMessageFor(model => model.Statin, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.Statin, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.Statin, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.Statin, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.Statin, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.Statin, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>ACE-i / ARB</h5>@Html.ValidationMessageFor(model => model.ACEI, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.ACEI, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ACEI, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ACEI, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ACEI, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.ACEI, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Other Antiplatelet Agent</h5>@Html.ValidationMessageFor(model => model.OAA, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.OAA, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.OAA, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.OAA, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.OAA, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.OAA, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-left:10px">
+                            <h5>Rivaroxaban 2.5 mg BID</h5>@Html.ValidationMessageFor(model => model.Rivaroxaban, "", new { @class = "text-danger" })
+                        </td>
+                        <td align="center">
+                            @Html.RadioButtonFor(model => model.Rivaroxaban, "< 25%")
+
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.Rivaroxaban, "25-50%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.Rivaroxaban, "51-75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.Rivaroxaban, "> 75%")
+                            </label>
+                        </td>
+                        <td align="center">
+                            <label>
+                                @Html.RadioButtonFor(model => model.Rivaroxaban, "Not Sure")
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+            <label class="control-label">
+                <strong>What barriers do you face in optimizing the management of your higher-risk CAD patients? * </strong><br>
+                (Check ALL that Apply or Select “None of the Above”):
+            </label>
+            <table width="100%" cellspacing="0" cellpadding="2" border="0">
+                <tbody>
+                    <tr>
+                        <td width="6%" valign="middle">@Html.CheckBoxFor(model => model.LackEvidenceBasedGuidelines, new { @class = "barriers" })</td>
+                        <td width="94%" valign="top"><h3>&nbsp;Lack of evidence-based guidelines</h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.LackApplicabilityGuidelines, new { @class = "barriers" })</td>
+                        <td valign="top"><h3>Lack of applicability of guidelines to my current practice / patients</h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.LackTime, new { @class = "barriers" })</td>
+                        <td valign="top"><h3>Lack of time</h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.OrganizationalInstitutional, new { @class = "barriers" })</td>
+                        <td valign="top"><h3>Organizational / Institutional</h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.ReimbursementFinancial, new { @class = "barriers" })</td>
+                        <td valign="top"><h3>Reimbursement / Financial</h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.PatientAdherence, new { @class = "barriers" })</td>
+                        <td valign="top"><h3>Patient adherence</h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.TreatmentAdverseEvents, new { @class = "barriers" })</td>
+                        <td valign="top"><h3>Treatment related adverse events</h3></td>
+                    </tr>
+                    <tr>
+                        <td valign="middle">@Html.CheckBoxFor(model => model.NoneAbove, new { @class = "barriers" })</td>
+                        <td valign="top"><h3>None of the above</h3></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><label id="barriersMsg" class="text-danger"></label></td>
+                    </tr>
+                    <tr><td colspan="2" valign="middle">@Html.ValidationMessageFor(model => model.BarriersCADPatientsValid, "", new { @class = "text-danger" })</td></tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+            <label class="control-label">
+                <strong>Please specify any educational / practical solutions that would be of value to you in the management of your higher-risk CAD patients: </strong><br>
+            </label>
+            @Html.TextAreaFor(model => model.EducationalPracticalSolutions, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EducationalPracticalSolutions, "", new { @class = "text-danger" })
+        </div>
+
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px; text-align:center; color:#005b7f">
+            Create Your User Account:<br>
+            <h5>Enter&nbsp;your username (your preferred email address) and&nbsp;password.</h5>
+        </div>
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:20px 50px 0px 50px">
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+            <label class="control-label">Password:* </label>
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+
+        </div>
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; padding:30px 50px 0px 50px">
+            <label class="control-label">Confirm Password:* </label>
+            @Html.PasswordFor(model => model.RepeatPassword, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.RepeatPassword, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-sm-12" style="background-color:#D9E1E3; text-align:center; padding:30px 20px 50px 0px">
+            <button type="button" class="btn btn-primary btn-lg" id="btnSubmit" style="width:180px">COMPLETE REGISTRATION</button>
+        </div>
+    </div>
+       </div>
+
+
+
+}
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="successLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="successful_modal">
+                    <p><strong>REGISTRATION SUCCESSFUL</strong></p>
+                    <p>
+                                                                       You have successfully completed your profile and are now registered for the INTENT-CAD program. A Registration Confirmation email has been sent to your email address. 
+                    </p>
+                    <p>
+
+                        If you do not see the confirmation email in your inbox, please check your spam folder. We recommend that you add webmaster@@chrc.net to your address book.
+                    </p>
+                </div>
+
+                <div id="failed_modal" style="color:red">
+                    This email has been registered.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $('#btnSubmit').click(function () {
+        console.log('submit frmRegistration');
+        $('#frmRegistration').submit();
+    });
+    $(document).ready(function () {
+        var isHttpPost = "@ViewBag.IsHttpPost".toLowerCase();
+        var isSuccessful = "@ViewBag.IsSuccessful".toLowerCase();
+        if (isHttpPost == "true") {
+            if (isSuccessful == "true") {
+                $("#successful_modal").show();
+                $("#failed_modal").hide();
+            } else {
+                $("#successful_modal").hide();
+                $("#failed_modal").show();
+            }
+            $("#myModal").modal('show');
+        }
+
+        $('#myModal').on('hidden.bs.modal', function () {
+            if (isSuccessful == "true") {
+                window.location = "/Account/Login";
+            }
+        })
+
+
+        $(".MedicalSpecialty").change(function () {
+            validateOtherMedicalSpecialty();
+        });
+        $("#formSubmitted").submit(function (e) {
+            validateOtherMedicalSpecialty(e);
+            validateOtherPracticeSetting(e);
+            if ($('.barriers:checked').length == 0) {
+                $("#barriersMsg").html("Required");
+                e.preventDefault();
+            }
+        });
+
+        $('input[name="PracticeSetting"]').change(function () {
+            validateOtherPracticeSetting();
+        });
+
+        $('.barriers').change(function () {
+            if ($(this).is("#NoneAbove")) {
+                if ($(this).is(":checked")) {
+                    $(".barriers:not(#NoneAbove)").prop("checked", false);
+                }
+            } else {
+                if ($(this).is(":checked")) {
+                    $("#NoneAbove").prop("checked", false);
+                }
+            }
+
+            if ($('.barriers:checked').length == 0) {
+                $("#barriersMsg").html("Required");
+            } else {
+                $("#barriersMsg").html("");
+            }
+        });
+
+
+
+        function validateOtherMedicalSpecialty(e) {
+            var value = $('input.MedicalSpecialty:checked').val();
+            if (value == "Other") {
+                if ($("#OtherMedicalSpecialty").val().length == 0) {
+                    $("#OtherMedicalSpecialtyMsg").html("Required");
+                    if (e != undefined) {
+                        e.preventDefault();
+                    }
+                } else {
+                    $("#OtherMedicalSpecialtyMsg").html("");
+                }
+            } else {
+                $("#OtherMedicalSpecialtyMsg").html("");
+                $("#OtherMedicalSpecialty").val("");
+            }
+        }
+
+        function validateOtherPracticeSetting(e) {
+            var value = $('input[name="PracticeSetting"]:checked').val();
+            if (value == "Other") {
+                if ($("#OtherPracticeSetting").val().length == 0) {
+                    $("#OtherPracticeSettingMsg").html("Required");
+                    if (e != undefined) {
+                        e.preventDefault();
+                    }
+                } else {
+                    $("#OtherPracticeSettingMsg").html("");
+                }
+            } else {
+                $("#OtherPracticeSettingMsg").html("");
+                $("#OtherPracticeSetting").val("");
+            }
+        }
+
+
+    });
+</script>
