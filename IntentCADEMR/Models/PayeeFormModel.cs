@@ -32,6 +32,7 @@ namespace IntentCADEMR.Models
         [ValidateTaxNumber]
         public string TaxNumber { get; set; }
         public string ContactNumber { get; set; }
+        public string FaxNumber { get; set; }
         public string AdditionalInformation { get; set; }
     }
 }
